@@ -39,7 +39,6 @@ class Solution {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));
-        List<Integer> p1 = new ArrayList(), p2 = new ArrayList();
         List<String> list = new ArrayList<>();
         String line;
         while ((line = br.readLine()) != null) {
