@@ -5,7 +5,7 @@ class Solution {
     private long solve(String s, List<Integer> A) {
         s = s + ".";
         int m = s.length(), n = A.size();
-        // dp[i][j][k] = number of ways to match s[0..i-1] with A[0..j-1] leaving k '#' in the end
+        // dp[i][j][k] = number of ways s[0..i-1] matches with A[0..j-1] and has k '#' in the end (to match with A.get(j))
         long[][][] dp = new long[m + 1][n + 1][m];
         dp[0][0][0] = 1;
         for (int i = 1; i <= m; i++) {
@@ -22,9 +22,9 @@ class Solution {
                 // if we choose s.charAt(i - 1) to be '.'
                 for (int j = 0; j <= n; j++)
                     dp[i][j][0] = dp[i - 1][j][0];
-                // if we choose s.charAt(i - 1) to be '#'
                 for (int j = 0; j < n; j++)
                     dp[i][j + 1][0] += dp[i - 1][j][A.get(j)];
+                // if we choose s.charAt(i - 1) to be '#'
                 for (int j = 0; j < n; j++)
                     for (int c = 0; c < A.get(j); c++)
                         dp[i][j][c + 1] = dp[i - 1][j][c];
